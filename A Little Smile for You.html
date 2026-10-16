@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A Little Smile for You</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&family=Playpen+Sans+Hebrew:wght@400;600&family=Fraunces:ital,wght@1,500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#5a3d63;--soft:#8b6b94;--rose:#f3a4c0;--rose2:#e8789f;--lav:#b9a4e8;--cream:#fff7f0;--glass:rgba(255,255,255,.72);--sh:0 14px 40px rgba(170,100,160,.25);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#fff0f7;--soft:#e8cde2;--glass:rgba(70,40,88,.72)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;overscroll-behavior:none}
+body{font-family:'Rubik',system-ui,sans-serif;color:var(--ink);background:linear-gradient(170deg,#ffe9f1 0%,#f7ecff 55%,#fff4ea 100%);overflow:hidden}
+@media (prefers-color-scheme:dark){body{background:linear-gradient(170deg,#2e1b3a,#3a2450 60%,#3d2a40)}}
+.blob{position:fixed;border-radius:50%;filter:blur(50px);opacity:.55;z-index:0;animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(30px,-40px) scale(1.15)}}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:30;overflow:hidden}
+.pet{position:fixed;z-index:1;pointer-events:none;color:var(--rose);animation:fall linear infinite;opacity:.6}
+@keyframes fall{from{transform:translateY(-8vh) rotate(0)}to{transform:translateY(110vh) rotate(360deg)}}
+#top{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:0 14px}
+#dots{display:flex;gap:7px}
+.dot{width:8px;height:8px;border-radius:8px;background:rgba(185,164,232,.5);border:0;padding:0;transition:.4s}
+.dot.on{width:26px;background:var(--rose2)}
+.chip{border:0;background:var(--glass);backdrop-filter:blur(10px);color:var(--ink);font:500 .85rem Rubik,sans-serif;padding:8px 14px;border-radius:99px;box-shadow:0 4px 14px rgba(170,100,160,.2);cursor:pointer}
+.s{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,2dvh,18px);padding:calc(56px + env(safe-area-inset-top,0px)) 24px calc(22px + env(safe-area-inset-bottom,0px));text-align:center;opacity:0;visibility:hidden;transform:translateY(24px) scale(.97);transition:opacity .6s,transform .7s cubic-bezier(.2,.8,.2,1),visibility .6s}
+.s.on{opacity:1;visibility:visible;transform:none}
+.s.gone{transform:translateY(-24px) scale(.97)}
+h1{font-family:'Fraunces','Rubik',serif;font-weight:500;font-size:clamp(1.7rem,7vw,2.3rem);margin:0;line-height:1.2}
+h2{font-size:clamp(1.3rem,5.5vw,1.7rem);margin:0;font-weight:500}
+p.lead{font-size:clamp(1rem,4.2vw,1.15rem);line-height:1.75;margin:0;max-width:390px;color:var(--soft)}
+.btn{font:600 1.05rem Rubik,sans-serif;color:#fff;border:0;border-radius:99px;padding:16px 30px;background:linear-gradient(135deg,var(--rose2),var(--lav));box-shadow:0 10px 26px rgba(232,120,159,.4);cursor:pointer;transition:transform .15s;position:relative}
+.btn:active{transform:scale(.94)}
+.btn.glow{animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 10px 38px rgba(232,120,159,.7);transform:scale(1.03)}}
+.btn.alt{background:var(--glass);color:var(--ink);box-shadow:0 6px 18px rgba(170,100,160,.2)}
+/* polaroid kitten */
+.pol{position:relative;background:#fff;padding:10px 10px 34px;border-radius:14px;box-shadow:var(--sh);transform:rotate(-2.5deg);width:clamp(170px,40dvh,290px);cursor:pointer;transition:transform .5s}
+.pol:after{content:"";position:absolute;top:-12px;left:50%;width:70px;height:22px;margin-left:-35px;background:rgba(243,164,192,.65);transform:rotate(3deg);border-radius:3px}
+.ph{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:#f6e9f6}
+.ph svg,.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph img{opacity:0;transition:opacity .6s}
+.ph img.ok{opacity:1}
+.kit{display:block;width:100%;height:100%;transform-origin:50% 80%}
+.pol .cap{position:absolute;bottom:8px;left:0;right:0;font:600 .85rem 'Playpen Sans Hebrew',Rubik;color:var(--soft)}
+.a-jump{animation:jump .7s}@keyframes jump{30%{transform:translateY(-22px) scale(1.06)}60%{transform:translateY(0) scaleY(.92)}}
+.a-spin{animation:spin .8s}@keyframes spin{to{transform:rotate(360deg)}}
+.a-wig{animation:wig .7s}@keyframes wig{20%,60%{transform:rotate(-9deg)}40%,80%{transform:rotate(9deg)}}
+.a-grow{animation:grow .8s}@keyframes grow{40%{transform:scale(1.28)}}
+.a-sneeze{animation:sn .6s}@keyframes sn{25%{transform:scale(.88) translateY(6px)}55%{transform:scale(1.12) translateY(-6px) rotate(-4deg)}}
+.a-flip{animation:flip .8s}@keyframes flip{50%{transform:scaleX(-1) scale(1.08)}to{transform:none}}
+.bub{background:var(--glass);backdrop-filter:blur(12px);border-radius:22px;padding:16px 18px;box-shadow:var(--sh);width:min(88vw,390px);min-height:96px;display:flex;align-items:center;justify-content:center;font-size:clamp(1rem,4.2vw,1.12rem);line-height:1.65;transition:opacity .3s,transform .3s}
+.bub.sw{opacity:0;transform:translateY(8px)}
+.cnt{font-size:.8rem;color:var(--soft)}
+/* hug */
+.hugs{position:relative;width:min(92vw,380px);height:clamp(150px,30dvh,230px)}
+.hugs>div{position:absolute;bottom:0;width:46%;transition:transform 1.6s cubic-bezier(.3,.9,.3,1)}
+.hugs .l{left:0;transform:translateX(-12%)}.hugs .r{right:0;transform:translateX(12%)}
+.hugs.go .l{transform:translateX(26%) rotate(9deg)}.hugs.go .r{transform:translateX(-26%) rotate(-9deg)}
+.hugs .heart{position:absolute;left:50%;top:6%;width:44px;margin-left:-22px;opacity:0;transform:scale(0);transition:.7s 1.3s;z-index:3}
+.hugs.go .heart{opacity:1;transform:scale(1);animation:beat 1s 2s infinite}
+@keyframes beat{50%{transform:scale(1.2)}}
+.hug-t{opacity:0;transform:translateY(12px);transition:.9s;display:none}
+.hug-t.on{display:block;opacity:1;transform:none}
+/* envelope 3D */
+.scene{perspective:900px;width:min(78vw,300px);height:min(52vw,200px)}
+.env{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(14deg);cursor:pointer;animation:float 3.4s ease-in-out infinite;transition:transform .8s}
+@keyframes float{50%{transform:rotateX(14deg) translateY(-9px)}}
+.env .body{position:absolute;inset:0;border-radius:10px;background:linear-gradient(160deg,#ffd5e3,#f6b3cb);box-shadow:0 22px 36px rgba(170,90,140,.35)}
+.env .body:before{content:"";position:absolute;inset:0;border-radius:10px;background:linear-gradient(135deg,#ffe3ec 50%,transparent 50%) left/51% 100% no-repeat,linear-gradient(225deg,#ffe3ec 50%,transparent 50%) right/51% 100% no-repeat;clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);opacity:.9}
+.env .flap{position:absolute;top:0;left:0;right:0;height:62%;background:linear-gradient(180deg,#f9bdd2,#f29bbb);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .9s cubic-bezier(.5,0,.2,1);backface-visibility:visible;z-index:3}
+.env.open .flap{transform:rotateX(178deg);z-index:0}
+.seal{position:absolute;left:50%;top:48%;width:50px;height:50px;margin:-25px 0 0 -25px;z-index:4;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff9db9,#d94b78 70%);box-shadow:0 5px 10px rgba(120,20,60,.4),inset 0 -3px 5px rgba(100,0,40,.3);display:grid;place-items:center;transition:.5s}
+.seal svg{width:24px;fill:#ffe5ee}
+.env.open .seal{transform:scale(0) rotate(90deg);opacity:0}
+.lt{position:absolute;left:8%;right:8%;top:8%;height:80%;background:#fffaf3;border-radius:6px;transition:transform 1s .7s;z-index:1}
+.env.open .lt{transform:translateY(-62%)}
+.tap{font-size:.85rem;color:var(--soft);animation:glow2 1.8s infinite}
+@keyframes glow2{50%{opacity:.35}}
+#paper{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:calc(50px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));background:rgba(120,70,130,.25);backdrop-filter:blur(6px)}
+#paper.on{display:flex}
+.sheet{width:min(94vw,430px);max-height:100%;display:flex;flex-direction:column;background:#fffaf3;color:#5a3d63;border-radius:20px;box-shadow:var(--sh);animation:up 1s cubic-bezier(.2,.9,.3,1)}
+@keyframes up{from{transform:translateY(90%) scale(.8);opacity:0}}
+.sheet .txt{overflow-y:auto;padding:24px 22px 8px;font:400 clamp(.98rem,4vw,1.08rem)/1.95 'Playpen Sans Hebrew',Rubik,sans-serif;text-align:right}
+.sheet .foot{padding:12px 16px 18px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.ghost{background:none;border:0;color:var(--soft);font:500 .9rem Rubik;text-decoration:underline;cursor:pointer;padding:6px}
+.fly{position:fixed;z-index:40;pointer-events:none;font-size:2rem;animation:fly 1.6s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--x),-60vh) rotate(var(--r)) scale(1.5);opacity:0}}
+.sp{position:fixed;z-index:40;pointer-events:none;animation:sp 1.1s ease-out forwards;font-size:var(--s,18px)}
+@keyframes sp{to{transform:translate(var(--x),var(--y)) scale(.4) rotate(120deg);opacity:0}}
+</style>
+</head>
+<body>
+<div class="blob" style="width:300px;height:300px;background:#ffc2d9;top:-90px;right:-80px"></div>
+<div class="blob" style="width:320px;height:320px;background:#cdbbff;bottom:-110px;left:-90px;animation-delay:-5s"></div>
+<div id="top"><div id="dots"><button class="dot on"></button><button class="dot"></button><button class="dot"></button><button class="dot"></button></div><button class="chip" id="mus">♪ מוזיקה</button></div>
+<div id="fx"></div>
+
+<section class="s on" id="s0">
+  <div class="pol" id="p0"><div class="ph" id="ph0"></div><div class="cap">Noga's little corner</div></div>
+  <h1 style="margin-top:12px">היי נגה שלי ❤️</h1>
+  <p class="lead">הכנתי לך פינה קטנה בעולם שהיא רק שלך. לא משנה איך עבר עלייך היום, אני מקווה שאצליח להעלות לך חיוך.</p>
+  <button class="btn glow" data-go="1">בואי, יש לי הפתעה בשבילך 🐾</button>
+</section>
+
+<section class="s" id="s1">
+  <h2>מכונת החיוכים</h2>
+  <div class="pol" id="p1"><div class="ph" id="ph1"></div><div class="cap" id="cap">תלחצי עליי</div></div>
+  <div class="bub" id="bub"></div>
+  <button class="btn" id="more">הפתעה חדשה 😽</button>
+  <div class="cnt" id="cnt"></div>
+</section>
+
+<section class="s" id="s2">
+  <h2>חיבוק וירטואלי</h2>
+  <div class="hugs" id="hugs"><div class="l" id="hl"></div><div class="r" id="hr"></div>
+    <svg class="heart" viewBox="0 0 24 24"><path fill="#e8789f" d="M12 21s-8-5.2-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.800-8 11-8 11z"/></svg></div>
+  <button class="btn glow" id="hugbtn">בואי נתחבק 🤍</button>
+  <div class="hug-t" id="hugt"><p class="lead" style="color:var(--ink)">הלוואי שהייתי לידך עכשיו, מחבק אותך ולא משחרר עד שתחייכי. את לא חייבת להיות שמחה כל הזמן. אני כאן איתך גם בימים הקשים ❤️</p></div>
+</section>
+
+<section class="s" id="s3">
+  <h2>ההפתעה הסודית</h2>
+  <div class="scene"><div class="env" id="env"><div class="body"></div><div class="lt"></div><div class="flap"></div>
+    <div class="seal"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.200-8-11a4.600 4.600 0 0 1 8-3 4.600 4.600 0 0 1 8 3c0 5.800-8 11-8 11z"/></svg></div></div></div>
+  <div class="tap" id="tap">לחצי על המעטפה</div>
+  <button class="ghost" id="reread" style="display:none">לקרוא שוב את המכתב</button>
+  <button class="ghost" id="restart" style="display:none">להתחיל מההתחלה</button>
+</section>
+
+<div id="paper"><div class="sheet"><div class="txt">נגה שלי,<br>אם יכולתי לבקש משהו אחד עכשיו, זה להיות לידך, לחבק אותך ולהזכיר לך כמה את חשובה לי. אני לא יכול להעלים כל דבר שמעציב אותך, אבל אני תמיד רוצה להיות מישהו שתוכלי להישען עליו. את לא צריכה להעמיד פנים שהכול בסדר, ואת לא צריכה להתמודד עם הכול לבד. אני אוהב אותך גם בימים שאת מחייכת וגם בימים שקצת קשה לך. ואם האתר הזה הצליח לגרום לך לחייך אפילו לשנייה אחת, אז עשיתי את שלי. ועכשיו נשאר לי רק דבר אחד — לבוא ולתת לך חיבוק אמיתי.<br><br><b>אוהב אותך הכי בעולם,<br>קרצי ❤️</b></div>
+<div class="foot"><button class="btn" id="kiss">שלחי לקרצי נשיקה 💋</button><div class="cnt" id="kc"></div><button class="ghost" id="close">סגירה</button></div></div></div>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)},R=function(a){return a[Math.floor(Math.random()*a.length)]};
+/* ---------- kitten illustration (fallback when photo can't load) ---------- */
+var PAL=[['#fff6ea','#f2c79c','#8fc7e8',0],['#f1ecf5','#b9aec9','#9ad49a',0],['#ffffff','#eadff2','#7fbfe6',0],['#e8c9a0','#9a6f4c','#e8b84a',1],['#8a7f95','#4b4256','#e8c64a',0],['#ffe3d0','#f0a87c','#78c6a3',1]];
+var uid=0;
+function kitten(p,ex){p=PAL[p%PAL.length];ex=ex||'n';var u='k'+(uid++),eyes;
+ var i='<ellipse cx="82" cy="104" rx="12" ry="14" fill="url(#'+u+'e)"/><ellipse cx="118" cy="104" rx="12" ry="14" fill="url(#'+u+'e)"/><ellipse cx="82" cy="106" rx="5" ry="10" fill="#2a1d30"/><ellipse cx="118" cy="106" rx="5" ry="10" fill="#2a1d30"/><circle cx="86" cy="99" r="4" fill="#fff"/><circle cx="122" cy="99" r="4" fill="#fff"/><circle cx="79" cy="110" r="2" fill="#fff" opacity=".7"/><circle cx="115" cy="110" r="2" fill="#fff" opacity=".7"/>';
+ var st='fill="none" stroke="#3a2a40" stroke-width="4" stroke-linecap="round"';
+ if(ex==='h')eyes='<path d="M70 106q12-16 24 0M106 106q12-16 24 0" '+st+'/>';
+ else if(ex==='w')eyes='<path d="M70 106q12-16 24 0" '+st+'/>'+i.split('<ellipse cx="118"')[0].split('<ellipse cx="82"')[0]+'<ellipse cx="118" cy="104" rx="12" ry="14" fill="url(#'+u+'e)"/><ellipse cx="118" cy="106" rx="5" ry="10" fill="#2a1d30"/><circle cx="122" cy="99" r="4" fill="#fff"/>';
+ else if(ex==='s')eyes='<path d="M70 100l22 8M130 100l-22 8" '+st+'/>';
+ else if(ex==='o')eyes=i.replace(/rx="12" ry="14"/g,'rx="14" ry="17"');
+ else eyes=i;
+ var mouth=ex==='o'?'<ellipse cx="100" cy="146" rx="6" ry="8" fill="#c9566f"/>':ex==='h'?'<path d="M86 138q14 22 28 0z" fill="#c9566f"/><path d="M92 146q8 6 16 0" fill="#ff9db0"/>':'<path d="M100 132v8M100 140q-8 8-16 2M100 140q8 8 16 2" '+st+' stroke-width="3"/>';
+ var tab=p[3]?'<path d="M100 56v22M86 60l4 18M114 60l-4 18" stroke="'+p[1]+'" stroke-width="6" stroke-linecap="round" opacity=".7"/><path d="M32 112h14M30 126h14M168 112h-14M170 126h-14" stroke="'+p[1]+'" stroke-width="5" stroke-linecap="round" opacity=".5"/>':'';
+ return '<svg class="kit" viewBox="0 0 200 200"><defs><radialGradient id="'+u+'f" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="'+p[0]+'"/><stop offset="1" stop-color="'+p[1]+'"/></radialGradient><radialGradient id="'+u+'e" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset=".35" stop-color="'+p[2]+'"/><stop offset="1" stop-color="#2d5a6e"/></radialGradient><radialGradient id="'+u+'b" cx="50%" cy="0" r="100%"><stop offset="0" stop-color="'+p[0]+'"/><stop offset="1" stop-color="'+p[1]+'"/></radialGradient></defs>'+
+ '<rect width="200" height="200" fill="#fde6f0"/><circle cx="40" cy="40" r="60" fill="#e9dcff" opacity=".7"/><circle cx="170" cy="170" r="70" fill="#ffd3e2" opacity=".7"/>'+
+ '<ellipse cx="100" cy="196" rx="72" ry="48" fill="url(#'+u+'b)"/>'+
+ '<path d="M36 94L34 26 86 56z" fill="url(#'+u+'f)"/><path d="M164 94L166 26 114 56z" fill="url(#'+u+'f)"/><path d="M46 80L46 42 74 58z" fill="#f6a6bd"/><path d="M154 80L154 42 126 58z" fill="#f6a6bd"/>'+
+ '<ellipse cx="100" cy="112" rx="72" ry="62" fill="url(#'+u+'f)"/><ellipse cx="46" cy="132" rx="24" ry="20" fill="'+p[0]+'" opacity=".6"/><ellipse cx="154" cy="132" rx="24" ry="20" fill="'+p[0]+'" opacity=".6"/>'+tab+
+ '<ellipse cx="100" cy="134" rx="26" ry="20" fill="#fff" opacity=".55"/>'+eyes+
+ '<path d="M92 122h16l-8 9z" fill="#f08aa6"/>'+mouth+
+ '<ellipse cx="60" cy="128" rx="10" ry="6" fill="#ff8fb0" opacity=".45"/><ellipse cx="140" cy="128" rx="10" ry="6" fill="#ff8fb0" opacity=".45"/>'+
+ '<g stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity=".9"><path d="M64 134l-30-6M64 140l-30 4M136 134l30-6M136 140l30 4"/></g></svg>'}
+/* Real photo layered over the illustration. If it can't load, the illustration simply stays. */
+function photo(box,p,ex){box.innerHTML=kitten(p,ex);
+ var im=new Image();im.alt='kitten';im.referrerPolicy='no-referrer';im.onload=function(){if(im.naturalWidth>50)im.className='ok'};im.onerror=function(){im.remove()};
+ im.src='https://cataas.com/cat/cute?width=500&height=500&r='+Date.now()+Math.floor(Math.random()*999);box.appendChild(im)}
+function setExpr(box,ex){var k=box.querySelector('svg');if(k){var n=document.createElement('div');n.innerHTML=kitten(+box.dataset.p||0,ex);k.replaceWith(n.firstChild)}}
+
+/* ---------- effects ---------- */
+var fx=$('#fx'),G=['♥','✦','❀','♡','✧'],CO=['#e8789f','#b9a4e8','#f6a6bd','#ffd27a','#c9b6ff'];
+function spark(x,y,n,big){for(var i=0;i<n;i++){var s=document.createElement('span');s.className='sp';s.textContent=R(G);var a=Math.random()*6.28,r=40+Math.random()*(big?150:80);s.style.cssText='left:'+x+'px;top:'+y+'px;color:'+R(CO)+';--x:'+Math.cos(a)*r+'px;--y:'+(Math.sin(a)*r-40)+'px;--s:'+(14+Math.random()*(big?22:12))+'px';fx.appendChild(s);setTimeout(function(q){q.remove()},1200,s)}}
+function rain(n){for(var i=0;i<n;i++){var s=document.createElement('span');s.className='sp';s.textContent=R(G);s.style.cssText='left:'+Math.random()*100+'vw;top:-20px;color:'+R(CO)+';--x:'+(Math.random()*60-30)+'px;--y:'+(60+Math.random()*90)+'vh;--s:'+(14+Math.random()*20)+'px;animation-duration:'+(2+Math.random()*2)+'s;animation-delay:'+Math.random()*.8+'s';fx.appendChild(s);setTimeout(function(q){q.remove()},4200,s)}}
+for(var i=0;i<12;i++){var d=document.createElement('span');d.className='pet';d.textContent=R(['❀','♥','✦']);d.style.cssText='left:'+Math.random()*100+'%;font-size:'+(10+Math.random()*12)+'px;animation-duration:'+(14+Math.random()*14)+'s;animation-delay:'+(-Math.random()*20)+'s';document.body.appendChild(d)}
+document.addEventListener('click',function(e){if(e.target.closest('.btn'))spark(e.clientX,e.clientY,7)});
+
+/* ---------- navigation ---------- */
+var cur=0,S=document.querySelectorAll('.s'),D=document.querySelectorAll('.dot');
+function go(n){if(n===cur)return;S[cur].classList.remove('on');S[cur].classList.add('gone');var o=cur;setTimeout(function(){S[o].classList.remove('gone')},700);cur=n;S[n].classList.add('on');D.forEach(function(d,i){d.classList.toggle('on',i===n)});
+ if(n===1&&!started){started=1;card()} if(n===2)resetHug()}
+D.forEach(function(d,i){d.onclick=function(){go(i)}});
+document.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){go(+b.dataset.go)}});
+
+/* ---------- screen 1 ---------- */
+photo($('#ph0'),2,'h');$('#ph0').dataset.p=2;
+$('#p0').onclick=function(e){var k=$('#ph0');k.classList.remove('a-wig');void k.offsetWidth;k.classList.add('a-wig');spark(e.clientX,e.clientY,6)};
+
+/* ---------- screen 2: smile machine ---------- */
+var M=[
+['הוא התבקש להגיד לך שאת הבן אדם הכי חמוד בעולם. אף אחד לא ביקש ממנו, אבל הוא מסכים.','h','jump'],
+['מיאו! (תרגום חופשי: נגה, את הסיבה שאני מגרגר.)','o','wig'],
+['החתלתול הזה בדק בכל העולם. אין חיוך כמו שלך.','w','spin'],
+['אסור להיות עצובה יותר מחמש דקות. אני לא קובע, אבל הוא חתלתול רציני.','s','grow'],
+['הוא ניסה להישאר רציני ולא הצליח. זה בגללך.','h','sneeze'],
+['את לא צריכה להיות שמחה כל הזמן כדי להיות מדהימה.','n','jump'],
+['אם הייתי יכול, הייתי שולח לך עכשיו חיבוק בגודל של כל העולם.','h','grow'],
+['דיווח רשמי: הלב של קרצי שייך לנגה. בלי החזרות.','w','flip'],
+['הוא הפיל כוס מהשולחן רק כדי להסיח את דעתך. את מוזמנת להשתמש בזה כתירוץ.','o','sneeze'],
+['גם אם היום קצת קשה, את לא צריכה לעבור אותו לבד.','n','wig'],
+['שאלתי אותו מי הכי חמודה. הוא הסתכל עלייך, ואני הסכמתי.','w','jump'],
+['מותר לך להתעייף ומותר לך להיות עצובה. ומותר גם לקבל מחמאה: את מקסימה.','n','grow'],
+['הוא התקרר וביקש שמיכה, אז אני שולח לך אותו במקום חיבוק. תחזיקי אותו חזק.','h','spin'],
+['כל הפרווה הזו הוסרה בהתנדבות כדי שתחייכי. כמעט.','s','sneeze'],
+['את חזקה יותר ממה שנראה לך, וחמודה יותר ממה שאת חושבת.','h','flip'],
+['הכי טוב בעולם: את, אני, וגוש פרווה שמסכים איתי.','w','jump']],
+order=[],oi=0,started=0,n=0;
+function shuf(){order=M.map(function(_,i){return i});for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=order[i];order[i]=order[j];order[j]=t}oi=0}shuf();
+var anims=['jump','spin','wig','grow','sneeze','flip'],caps=['פררר…','מיאו!','אני כאן','חיבוק?','😽','תלחצי שוב'],last=0;
+function play(a){var k=$('#ph1');anims.forEach(function(x){k.classList.remove('a-'+(x==='wig'?'wig':x))});k.className='ph';void k.offsetWidth;k.classList.add('a-'+a)}
+function card(){var b=$('#bub');b.classList.add('sw');
+ setTimeout(function(){if(oi>=order.length)shuf();var m=M[order[oi++]],p=Math.floor(Math.random()*PAL.length);$('#ph1').dataset.p=p;photo($('#ph1'),p,m[1]);$('#cap').textContent=R(caps);b.textContent=m[0];b.classList.remove('sw');play(m[2]);n++;$('#cnt').textContent=n>1?'חיוכים שנאספו: '+n:'';
+  var r=$('#ph1').getBoundingClientRect();spark(r.left+r.width/2,r.top+r.height/2,5)},280)}
+$('#more').onclick=card;
+$('#p1').onclick=function(e){var a=R(anims);play(a);setExpr($('#ph1'),R(['h','w','o','s']));$('#cap').textContent=R(caps);spark(e.clientX,e.clientY,8,1)};
+
+/* ---------- screen 3: hug ---------- */
+function resetHug(){$('#hl').innerHTML=kitten(0,'n');$('#hr').innerHTML=kitten(4,'n');$('#hugs').classList.remove('go');$('#hugt').classList.remove('on');$('#hugbtn').style.display=''}
+$('#hugbtn').onclick=function(){$('#hugs').classList.add('go');$('#hugbtn').style.display='none';
+ setTimeout(function(){$('#hl').innerHTML=kitten(0,'h');$('#hr').innerHTML=kitten(4,'h')},1500);
+ setTimeout(function(){var r=$('#hugs').getBoundingClientRect();spark(r.left+r.width/2,r.top+40,16,1);$('#hugt').classList.add('on')},2000)};
+
+/* ---------- screen 4: envelope + kiss ---------- */
+var kisses=0;
+$('#env').onclick=function(e){var env=$('#env');if(env.classList.contains('open'))return;env.classList.add('open');$('#tap').style.display='none';spark(e.clientX,e.clientY,12,1);
+ setTimeout(function(){$('#paper').classList.add('on');rain(34);$('#reread').style.display=$('#restart').style.display='inline-block'},1900)};
+$('#close').onclick=function(){$('#paper').classList.remove('on')};
+$('#reread').onclick=function(){$('#paper').classList.add('on')};
+$('#kiss').onclick=function(e){kisses++;var f=document.createElement('span');f.className='fly';f.textContent='💋';var r=e.currentTarget.getBoundingClientRect();f.style.cssText='left:'+(r.left+r.width/2-16)+'px;top:'+r.top+'px;--x:'+(Math.random()*120-60)+'px;--r:'+(Math.random()*60-30)+'deg';fx.appendChild(f);setTimeout(function(){f.remove()},1700);
+ spark(r.left+r.width/2,r.top,12,1);$('#kc').textContent=kisses<2?'קרצי קיבל את הנשיקה שלך 💗':'קרצי קיבל '+kisses+' נשיקות ומאוד מאושר 💗';if(kisses===1)rain(18)};
+$('#restart').onclick=function(){$('#env').classList.remove('open');$('#tap').style.display='';$('#reread').style.display=$('#restart').style.display='none';$('#paper').classList.remove('on');kisses=0;$('#kc').textContent='';go(0)};
+
+/* ---------- music: soft generated pad, only on tap ---------- */
+var ac,tm,on=0,ch=[[261.6,329.6,392,493.9],[220,261.6,329.6,392],[174.6,220,261.6,329.6],[196,246.9,293.7,392]],st=0;
+function note(f,t,d,v){var o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.15);g.gain.exponentialRampToValueAtTime(.0005,t+d);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+d+.1)}
+function bar(){var t=ac.currentTime,c=ch[st++%4];c.forEach(function(f,i){note(f/2,t,3.6,.035);note(f*2,t+i*.45,1.8,.03)});note(c[2]*2,t+2.1,1.8,.025)}
+$('#mus').onclick=function(){try{if(!on){var A=window.AudioContext||window.webkitAudioContext;if(!A)return;ac=ac||new A();if(ac.resume)ac.resume();on=1;bar();tm=setInterval(bar,3600);$('#mus').textContent='❚❚ עצירה'}else{on=0;clearInterval(tm);$('#mus').textContent='♪ מוזיקה'}}catch(e){}};
+resetHug();
+})();
+</script>
+</body>
+</html>
